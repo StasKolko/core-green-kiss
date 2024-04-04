@@ -1,26 +1,15 @@
-"use client";
+import { CoursesList } from "@/features/courses-list/pub/courses-list";
+import { CreateCourseForm } from "@/features/courses-list/pub/create-course-form";
 
-import { Button } from "@/shared/ui/button";
-import { useState } from "react";
-
-export default function Home() {
-  const [count, setCount] = useState(0);
-
-  function increment() {
-    setCount((prev) => prev + 1);
-  }
-
-  function decrement() {
-    setCount((prev) => prev - 1);
-  }
-
+export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center gap-5 p-24">
-      <h1>{count}</h1>
-      <div className="flex gap-3">
-        <Button onClick={decrement}>Меньше</Button>
-        <Button onClick={increment}>Больше</Button>
-      </div>
+    <main className="flex min-h-screen flex-col  p-8">
+      <h1 className="text-3xl mb-2">Courses</h1>
+      <CreateCourseForm
+        revalidatePagePath="/"
+        className="max-w-[300px] mb-10"
+      />
+      <CoursesList revalidatePagePath="/" />
     </main>
   );
 }
