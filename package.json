@@ -13,7 +13,7 @@
     "prettier": "prettier -w .",
     "db:generate": "drizzle-kit generate:pg",
     "db:drop": "drizzle-kit drop",
-    "db:migrate": "ts-node db/migrate.ts"
+    "db:migrate": "tsx db/migrate.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
