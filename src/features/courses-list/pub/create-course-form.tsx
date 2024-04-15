@@ -16,7 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { createCourseAction } from "../actions";
 import { Button } from "@/shared/ui/button";
-import { cn } from "@/shared/ui/utils";
+import { cn } from "@/shared/lib/utils";
 
 const createCourseFormSchema = z.object({
   name: z.string(),
