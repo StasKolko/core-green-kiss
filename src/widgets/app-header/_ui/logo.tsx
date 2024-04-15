@@ -20,7 +20,7 @@ export function Logo() {
           <Skeleton className="h-8 w-8" />
         )}
         <span className="text-foreground font-bold inline-block">
-          Stas course
+          Green kiss
         </span>
       </Link>
     </Button>
