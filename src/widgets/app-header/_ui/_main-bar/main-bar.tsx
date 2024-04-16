@@ -1,4 +1,5 @@
 import { Menu, Search } from "lucide-react";
+import { HomeIcon } from "@radix-ui/react-icons";
 import { Logo } from "./logo";
 
 import { Button } from "@/shared/ui/button";
@@ -14,16 +15,28 @@ import { MainBarActions } from "./main-bar-actions";
 
 export function MainBar() {
   return (
-    <div className="flex items-center gap-5 py-2">
-      <div className="flex items-center gap-4">
-        <Logo />
+    <div className="flex items-center justify-between md:gap-5 py-1 md:py-2">
+      <div className="contents md:fle items-center  md:gap-4">
+        <div className="hidden md:flex">
+          <Logo />
+        </div>
+
+        <Button
+          variant="ghost"
+          className={cn("h-12 py-0 px-2 flex-col md:gap-1 text-xs md:sm")}
+        >
+          <HomeIcon className="h-5 w-5" />
+          Главная
+        </Button>
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="default" className="gap-1" size="sm">
+            <Button
+              variant="ghost"
+              className={cn("h-12 py-0 px-2 flex-col md:gap-1 text-xs md:sm")}
+            >
               <Menu className="h-5 w-5" />
-              Каталог
-              <span className="sr-only">Меню</span>
+              <span>Каталог</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
@@ -35,14 +48,14 @@ export function MainBar() {
         </Sheet>
       </div>
 
-      <div className="w-full flex p-[2px] bg-primary rounded-md">
-        <Input className="h-8" />
+      <div className="w-full hidden md:flex p-[2px] bg-primary rounded-md">
+        <Input className="h-8" placeholder="Искать на Green kiss" />
         <Button className={cn("h-8")}>
           <Search className="h-5 w-5" />
         </Button>
       </div>
 
-      <div className="flex gap-4 items-center">
+      <div className="contents md:flex md:gap-4 items-center">
         <MainBarActions />
       </div>
     </div>
