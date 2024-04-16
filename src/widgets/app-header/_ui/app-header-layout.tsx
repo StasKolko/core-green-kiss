@@ -8,8 +8,8 @@ export function AppHeaderLayout({
   quickTags?: React.ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex flex-col">
+    <header className="fixed md:sticky bottom-0 md:top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="px-3 xs:px-8 container flex flex-col">
         {topBar}
 
         {mainBar}
