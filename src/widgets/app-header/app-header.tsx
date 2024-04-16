@@ -1,22 +1,14 @@
 import { AppHeaderLayout } from "./_ui/app-header-layout";
-import { Logo } from "./_ui/logo";
-import { MainNav } from "./_ui/main-nav";
-// import { ThemeCustomizer } from "@/features/theme/theme-customizer";
-import { Profile } from "./_ui/profile";
+import { TopBar } from "./_ui/_top-bar/top-bar";
+import { MainBar } from "./_ui/_main-bar/main-bar";
+import { QuickTags } from "./_ui/quick-tags";
 
-export function AppHeader({
-  variant,
-}: {
-  variant: "auth" | "private" | "public";
-}) {
-  const isProfile = variant !== "auth";
-
+export function AppHeader() {
   return (
     <AppHeaderLayout
-      logo={<Logo />}
-      nav={<MainNav />}
-      profile={isProfile && <Profile />}
-      // actions={<ThemeCustomizer />}
+      topBar={<TopBar />}
+      mainBar={<MainBar />}
+      quickTags={<QuickTags />}
     />
   );
 }
