@@ -23,7 +23,9 @@ export function MainBar() {
 
         <Button
           variant="ghost"
-          className={cn("h-12 py-0 px-2 flex-col md:gap-1 text-xs md:sm")}
+          className={cn(
+            "h-12 md:hidden py-0 px-2 flex-col md:gap-1 text-xs md:sm",
+          )}
         >
           <HomeIcon className="h-5 w-5" />
           Главная
