@@ -50,9 +50,9 @@ export function MainBar() {
         </Sheet>
       </div>
 
-      <div className="w-full hidden md:flex p-[2px] bg-primary rounded-md">
+      <div className="w-full hidden md:flex gap-[2px] p-[2px] bg-primary rounded-md">
         <Input className="h-8" placeholder="Искать на Green kiss" />
-        <Button className={cn("h-8")}>
+        <Button className={cn("h-8 hover:bg-ring px-2")}>
           <Search className="h-5 w-5" />
         </Button>
       </div>
