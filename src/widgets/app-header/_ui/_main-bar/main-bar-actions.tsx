@@ -1,18 +1,12 @@
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 import { ShoppingCart, CircleUserRound } from "lucide-react";
-import { MoonIcon } from "@radix-ui/react-icons";
+import { ModeToggle } from "@/features/theme/mode-toggle";
 
 export function MainBarActions() {
   return (
     <>
-      <Button
-        className={cn("flex-col h-12 py-0 px-2 text-xs md:sm")}
-        variant="ghost"
-      >
-        <MoonIcon className="h-5 w-5" />
-        Тема
-      </Button>
+      <ModeToggle />
       <Button
         className={cn("flex-col h-12 py-0 px-2 text-xs md:sm")}
         variant="ghost"
