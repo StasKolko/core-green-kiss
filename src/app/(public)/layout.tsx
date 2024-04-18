@@ -11,8 +11,8 @@ export default async function Layout({
 }) {
   return (
     <>
-      <div className="py-4 px-10">
-        <div className="w-full md:hidden flex p-[2px] bg-primary rounded-md">
+      <div className="md:hidden py-4 px-10">
+        <div className="w-full flex p-[2px] bg-primary rounded-md">
           <Input className="h-10" placeholder="Искать на Green kiss" />
           <Button className={cn("h-8")}>
             <Search className="h-5 w-5" />

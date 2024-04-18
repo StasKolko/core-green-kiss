@@ -8,7 +8,13 @@ import { Skeleton } from "@/shared/ui/skeleton";
 import { useMounted } from "@/shared/lib/use-mounted";
 import { useTheme } from "next-themes";
 
-export function ModeToggle() {
+export function ModeToggle({
+  className,
+  iconSize,
+}: {
+  className: string;
+  iconSize: string;
+}) {
   const { theme, setTheme } = useTheme();
   const mounted = useMounted();
 
@@ -21,15 +27,11 @@ export function ModeToggle() {
   }
 
   return (
-    <Button
-      className={cn("flex-col h-12 py-0 px-2 text-xs md:sm")}
-      variant="ghost"
-      onClick={handleModeTheme}
-    >
+    <Button className={cn(className)} variant="ghost" onClick={handleModeTheme}>
       {theme === "dark" ? (
-        <MoonIcon className="h-5 w-5" />
+        <MoonIcon className={iconSize} />
       ) : (
-        <SunIcon className="h-5 w-5" />
+        <SunIcon className={iconSize} />
       )}
       Тема
     </Button>
