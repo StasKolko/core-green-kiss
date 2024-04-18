@@ -1,7 +1,8 @@
 import { db } from "@/shared/lib/db";
-import { eq } from "drizzle-orm";
 import { CourseTable } from "@/../db/schema";
 import { cache } from "react";
+import { eq } from "drizzle-orm";
+import { createId } from "@paralleldrive/cuid2";
 
 class CoursesRepository {
   getCoursesList = cache(async (): Promise<CourseListElement[]> => {
@@ -11,16 +12,11 @@ class CoursesRepository {
   createCourseElement = async (
     command: CreateCourseListElementCommand,
   ): Promise<void> => {
-    await db
-      .insert(CourseTable)
-      .values({
-        ...command,
-      })
-      .returning({
-        id: CourseTable.id,
-        name: CourseTable.name,
-        description: CourseTable.description,
-      });
+    await db.insert(CourseTable).values({
+      id: createId(),
+      name: command.name,
+      description: command.description,
+    });
   };
 
   deleteCourseElement = async (
