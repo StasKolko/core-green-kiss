@@ -1,5 +1,7 @@
 import { z } from "zod";
-import "dotenv/config";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const privateConfigSchema = z.object({
   GITHUB_ID: z.string().optional(),
