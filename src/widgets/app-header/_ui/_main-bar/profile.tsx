@@ -14,22 +14,26 @@ import { cn } from "@/shared/lib/utils";
 
 export function Profile({
   iconSize,
-  className,
-  skeletonStyle,
+  buttonStyle,
 }: {
   iconSize: string;
-  className: string;
-  skeletonStyle: string;
+  buttonStyle: string;
 }) {
   const session = useAppSession();
   const { signOut, isPending: isLoadingSignOut } = useSignOut();
 
   if (session.status === "loading") {
-    return <Skeleton className={cn(skeletonStyle)} />;
+    return <Skeleton className="h-12 w-[4.375rem]" />;
   }
 
   if (session.status === "unauthenticated") {
-    return <SignInButton iconSize={iconSize} className={className} />;
+    return (
+      <SignInButton
+        typeButton="modal"
+        iconSize={iconSize}
+        buttonStyle={buttonStyle}
+      />
+    );
   }
 
   const user = session?.data?.user;
@@ -39,7 +43,7 @@ export function Profile({
       <Popover>
         <PopoverTrigger asChild>
           <Button
-            className={cn(className, "hidden md:inline-flex")}
+            className={cn(buttonStyle, "hidden md:inline-flex")}
             variant="ghost"
           >
             <ProfileAvatar profile={user} iconSize={iconSize} />
@@ -75,7 +79,7 @@ export function Profile({
 
       <Drawer>
         <DrawerTrigger asChild>
-          <Button className={cn(className, "md:hidden")} variant="ghost">
+          <Button className={cn(buttonStyle, "md:hidden")} variant="ghost">
             <ProfileAvatar profile={user} iconSize={iconSize} />
             <span>Профиль</span>
           </Button>
