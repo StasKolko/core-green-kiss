@@ -4,7 +4,7 @@ import { CreateCourseForm } from "@/features/courses-list/pub/create-course-form
 export default async function Home() {
   return (
     <main className="container flex min-h-screen flex-col  p-8">
-      <h1 className="text-3xl mb-2">Товары для магазина</h1>
+      <h1 className="text-3xl mb-3">Товары для магазина</h1>
       <p className="text-xl mb-2">Добавьте товар какой хотите</p>
       <CreateCourseForm
         revalidatePagePath="/"
