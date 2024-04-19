@@ -53,11 +53,7 @@ export function MainBar() {
 
       <div className="contents md:flex md:gap-4 items-center">
         <ModeToggle iconSize={iconSize} className={headerButtonStyle} />
-        <Profile
-          iconSize={iconSize}
-          className={headerButtonStyle}
-          skeletonStyle="h-12 w-[4.375rem] rounded-md"
-        />
+        <Profile iconSize={iconSize} buttonStyle={headerButtonStyle} />
         <Button className={cn(headerButtonStyle)} variant="ghost">
           <ShoppingCart className={iconSize} />
           Корзина
