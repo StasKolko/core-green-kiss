@@ -46,7 +46,7 @@ export function Profile({
             className={cn(buttonStyle, "hidden md:inline-flex")}
             variant="ghost"
           >
-            <ProfileAvatar profile={user} iconSize={iconSize} />
+            <ProfileAvatar profile={user} className={iconSize} />
             <span>Профиль</span>
           </Button>
         </PopoverTrigger>
@@ -80,7 +80,7 @@ export function Profile({
       <Drawer>
         <DrawerTrigger asChild>
           <Button className={cn(buttonStyle, "md:hidden")} variant="ghost">
-            <ProfileAvatar profile={user} iconSize={iconSize} />
+            <ProfileAvatar profile={user} className={iconSize} />
             <span>Профиль</span>
           </Button>
         </DrawerTrigger>

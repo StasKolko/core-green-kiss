@@ -5,17 +5,17 @@ import { getProfileLetters } from "../_vm/get-profile-letters";
 
 export const ProfileAvatar = ({
   profile,
-  iconSize,
+  className,
 }: {
   profile?: Profile;
-  iconSize?: string;
+  className?: string;
 }) => {
   if (!profile) {
     return null;
   }
 
   return (
-    <Avatar className={cn(iconSize)}>
+    <Avatar className={cn(className)}>
       <AvatarImage src={profile.image ?? ""} className="object-cover" />
       <AvatarFallback>{getProfileLetters(profile)}</AvatarFallback>
     </Avatar>

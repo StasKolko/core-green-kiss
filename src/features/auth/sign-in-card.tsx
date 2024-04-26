@@ -12,6 +12,7 @@ import { cn } from "@/shared/lib/utils";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
 import { Button } from "@/shared/ui/button";
+import { SignInError } from "./_ui/sign-in-error";
 
 export function SignInCard({ onClick }: { onClick?: MouseEventHandler }) {
   return (
@@ -24,6 +25,9 @@ export function SignInCard({ onClick }: { onClick?: MouseEventHandler }) {
       </CardHeader>
       <CardContent>
         <SignInForm />
+        <div className="pt-6">
+          <SignInError />
+        </div>
       </CardContent>
       <CardFooter className="flex flex-col justify-center text-center text-sm text-muted-foreground">
         <p>Нажимая продолжить, вы соглашаетесь с</p>
