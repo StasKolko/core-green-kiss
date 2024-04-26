@@ -21,7 +21,10 @@ export function SignInError() {
   };
   const searchParams = useSearchParams();
   const errorUrl = searchParams.get("error");
+
   if (!errorUrl) return null;
+
+  console.log(errorUrl);
 
   let errorInfo;
 
