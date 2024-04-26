@@ -10,6 +10,8 @@ const privateConfigSchema = z.object({
   GOOGLE_SECRET: z.string().optional(),
   YANDEX_ID: z.string().optional(),
   YANDEX_SECRET: z.string().optional(),
+
+  ADMIN_EMAILS: z.string().optional(),
 });
 
 export const privateConfig = privateConfigSchema.parse(process.env);

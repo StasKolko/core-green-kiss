@@ -1,25 +1,23 @@
 import {
   pgTable,
-  uuid,
   varchar,
   text,
   integer,
   primaryKey,
   timestamp,
   pgEnum,
-  index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 
-export const UserRole = pgEnum("userRole", ["ADMIN", "USER"]);
+export const UserRole = pgEnum("role", ["ADMIN", "USER"]);
 
 export const users = pgTable(
   "user",
   {
     id: varchar("id", { length: 40 }).primaryKey().notNull(),
     email: varchar("email", { length: 255 }).notNull(),
-    role: UserRole("userRole").default("USER").notNull(),
+    role: UserRole("role").default("USER").notNull(),
     name: varchar("name", { length: 255 }),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),

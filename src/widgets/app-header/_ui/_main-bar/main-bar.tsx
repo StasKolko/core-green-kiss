@@ -14,13 +14,13 @@ import { cn } from "@/shared/lib/utils";
 import { ModeToggle } from "@/features/theme/mode-toggle";
 import { Profile } from "./profile";
 
-export function MainBar() {
+export function MainBar({ isPublic }: { isPublic: boolean }) {
   const iconSize = "h-5 w-5";
   const headerButtonStyle = "flex-col h-12 py-0 px-2 text-xs md:sm";
 
   return (
     <div className="flex items-center justify-between md:gap-5 py-1 md:py-2">
-      <div className="contents md:fle items-center  md:gap-4">
+      <div className="contents md:flex items-center md:gap-4">
         <Logo className="hidden md:flex" />
 
         <Button variant="ghost" className={cn("md:hidden", headerButtonStyle)}>
@@ -44,20 +44,27 @@ export function MainBar() {
         </Sheet>
       </div>
 
-      <div className="w-full hidden md:flex gap-[2px] p-[2px] bg-primary rounded-md">
-        <Input className="h-8" placeholder="Искать на Green kiss" />
-        <Button className={cn("h-8 hover:bg-ring px-2")}>
-          <Search className={iconSize} />
-        </Button>
-      </div>
+      {isPublic && (
+        <div className="w-full hidden md:flex gap-[2px] p-[2px] bg-primary rounded-md">
+          <Input className="h-8" placeholder="Искать на Green kiss" />
+          <Button className={cn("h-8 hover:bg-ring px-2")}>
+            <Search className={iconSize} />
+          </Button>
+        </div>
+      )}
 
       <div className="contents md:flex md:gap-4 items-center">
         <ModeToggle iconSize={iconSize} className={headerButtonStyle} />
-        <Profile iconSize={iconSize} buttonStyle={headerButtonStyle} />
-        <Button className={cn(headerButtonStyle)} variant="ghost">
-          <ShoppingCart className={iconSize} />
-          Корзина
-        </Button>
+
+        {isPublic && (
+          <Profile iconSize={iconSize} buttonStyle={headerButtonStyle} />
+        )}
+        {isPublic && (
+          <Button className={cn(headerButtonStyle)} variant="ghost">
+            <ShoppingCart className={iconSize} />
+            Корзина
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { cn } from "@/shared/lib/utils";
 import { ProviderButton } from "./_ui/provider-button";
-import { Suspense } from "react";
 
 export function SignInForm({ className }: { className?: string }) {
   const providers = {
@@ -21,11 +20,9 @@ export function SignInForm({ className }: { className?: string }) {
 
   return (
     <div className={cn("flex flex-col items-center gap-3", className)}>
-      <Suspense>
-        {oauthProviders.map((provider) => (
-          <ProviderButton key={provider.id} provider={provider} />
-        ))}
-      </Suspense>
+      {oauthProviders.map((provider) => (
+        <ProviderButton key={provider.id} provider={provider} />
+      ))}
     </div>
   );
 }
