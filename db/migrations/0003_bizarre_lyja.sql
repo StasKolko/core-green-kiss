@@ -1,0 +1,1 @@
+ALTER TABLE "category" ALTER COLUMN "createdAt" SET DEFAULT now();

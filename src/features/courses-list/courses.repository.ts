@@ -2,7 +2,7 @@ import { db } from "@/shared/lib/db";
 import { CourseTable } from "@/../db/schema";
 import { cache } from "react";
 import { eq } from "drizzle-orm";
-import { createId } from "@/shared/lib/createId";
+import { createId } from "@/shared/lib/id";
 
 class CoursesRepository {
   getCoursesList = cache(async (): Promise<CourseListElement[]> => {

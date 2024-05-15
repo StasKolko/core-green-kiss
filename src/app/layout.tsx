@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/shared/lib/utils";
+import { Toaster } from "@/shared/ui/sonner";
 import { AppProvider } from "./_providers/app-provider";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,6 +29,7 @@ export default function RootLayout({
         )}
       >
         <AppProvider>{children}</AppProvider>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 import { ROLES, UserEntity } from "../_domain/types";
-import { createId } from "@/shared/lib/createId";
+import { createId } from "@/shared/lib/id";
 import { userRepository } from "../_repositories/user";
 import { privateConfig } from "@/shared/config/private";
 

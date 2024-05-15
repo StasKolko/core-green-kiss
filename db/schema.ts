@@ -7,10 +7,11 @@ import {
   timestamp,
   pgEnum,
   uniqueIndex,
+  AnyPgColumn,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 
-export const UserRole = pgEnum("role", ["ADMIN", "USER"]);
+export const UserRole = pgEnum("role", ["ADMIN", "USER", "MANAGER"]);
 
 export const users = pgTable(
   "user",
@@ -77,4 +78,37 @@ export const CourseTable = pgTable("course", {
   id: varchar("id", { length: 40 }).primaryKey().notNull(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description").notNull(),
+});
+
+export const categories = pgTable("category", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  url: varchar("url", { length: 40 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  image: text("image"),
+  parentId: varchar("parent_id", { length: 40 }).references(
+    (): AnyPgColumn => categories.id,
+    { onDelete: "cascade" },
+  ),
+  createdBy: varchar("createdBy", { length: 40 }).references(() => users.id),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedBy: varchar("updatedBy", { length: 40 }).references(() => users.id),
+  updatedAt: timestamp("updatedAt", { mode: "date" }),
+});
+
+export const products = pgTable("product", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  url: varchar("url", { length: 40 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  image: text("image"),
+});
+
+export const mediaType = pgEnum("media_type", ["image", "video"]);
+
+export const media = pgTable("media", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  type: mediaType("type").notNull(),
+  url: text("url").notNull(),
+  createdAt: varchar("created_at"),
 });

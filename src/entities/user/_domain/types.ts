@@ -1,9 +1,10 @@
 export type UserId = string;
-export type Role = "ADMIN" | "USER";
+export type Role = "ADMIN" | "USER" | "MANAGER";
 
 export const ROLES: Record<Role, Role> = {
   ADMIN: "ADMIN",
   USER: "USER",
+  MANAGER: "MANAGER",
 };
 
 export type UserEntity = {

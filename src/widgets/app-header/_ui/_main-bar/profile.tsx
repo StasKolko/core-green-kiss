@@ -1,7 +1,8 @@
 "use client";
+
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui/drawer";
-import { LogOut, User } from "lucide-react";
+import { Banana, LogOut, User } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import { Separator } from "@/shared/ui/separator";
@@ -11,6 +12,7 @@ import { useSignOut } from "@/features/auth/use-sign-out";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { ProfileAvatar } from "@/entities/user/profile";
 import { cn } from "@/shared/lib/utils";
+import { usePathname } from "next/navigation";
 
 export function Profile({
   iconSize,
@@ -36,7 +38,10 @@ export function Profile({
     );
   }
 
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
   const user = session?.data?.user;
+  const role = user?.role;
 
   return (
     <>
@@ -59,6 +64,22 @@ export function Profile({
             </p>
           </h3>
           <Separator className="my-1" />
+          {role !== "USER" &&
+            (isAdmin ? (
+              <Button className="gap-2" asChild>
+                <Link href={`/`}>
+                  <Banana className={iconSize} />
+                  <span>Shop</span>
+                </Link>
+              </Button>
+            ) : (
+              <Button className="gap-2" asChild>
+                <Link href={`/admin`}>
+                  <Banana className={iconSize} />
+                  <span>Admin</span>
+                </Link>
+              </Button>
+            ))}
           <Button variant="secondary" className="gap-2" asChild>
             <Link href={`/profile/`}>
               <User className={iconSize} />
@@ -94,6 +115,22 @@ export function Profile({
               </p>
             </h3>
             <Separator className="my-1" />
+            {role !== "USER" &&
+              (isAdmin ? (
+                <Button className="gap-2" asChild>
+                  <Link href={`/`}>
+                    <Banana className={iconSize} />
+                    <span>Shop</span>
+                  </Link>
+                </Button>
+              ) : (
+                <Button className="gap-2" asChild>
+                  <Link href={`/admin`}>
+                    <Banana className={iconSize} />
+                    <span>Admin</span>
+                  </Link>
+                </Button>
+              ))}
             <Button variant="secondary" className="gap-2" asChild>
               <Link href={`/profile/`}>
                 <User className={iconSize} />
