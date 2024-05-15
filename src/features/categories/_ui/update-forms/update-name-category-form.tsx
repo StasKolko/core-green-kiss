@@ -55,6 +55,7 @@ export function UpdateNameCategoryForm({
   useEffect(() => {
     form.setValue("name", categoryName ?? "");
     setName(categoryName ?? "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName]);
 
   const handleReset = () => {

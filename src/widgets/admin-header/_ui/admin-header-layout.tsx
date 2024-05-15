@@ -30,7 +30,11 @@ export function AdminHeaderLayout() {
         <div className="contents md:flex md:gap-4 items-center">
           <ModeToggle iconSize={iconSize} className={headerButtonStyle} />
 
-          <Profile iconSize={iconSize} buttonStyle={headerButtonStyle} />
+          <Profile
+            isAdmin
+            iconSize={iconSize}
+            buttonStyle={headerButtonStyle}
+          />
         </div>
       </div>
     </header>

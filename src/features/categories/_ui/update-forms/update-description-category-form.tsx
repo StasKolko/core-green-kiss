@@ -54,6 +54,7 @@ export function UpdateDescriptionCategoryForm({
   useEffect(() => {
     form.setValue("description", categoryDescription ?? "");
     setDescription(categoryDescription ?? "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryDescription]);
 
   const handleReset = () => {

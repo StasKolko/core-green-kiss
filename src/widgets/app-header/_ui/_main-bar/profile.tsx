@@ -12,14 +12,15 @@ import { useSignOut } from "@/features/auth/use-sign-out";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { ProfileAvatar } from "@/entities/user/profile";
 import { cn } from "@/shared/lib/utils";
-import { usePathname } from "next/navigation";
 
 export function Profile({
   iconSize,
   buttonStyle,
+  isAdmin,
 }: {
   iconSize: string;
   buttonStyle: string;
+  isAdmin?: boolean;
 }) {
   const session = useAppSession();
   const { signOut, isPending: isLoadingSignOut } = useSignOut();
@@ -38,8 +39,6 @@ export function Profile({
     );
   }
 
-  const pathname = usePathname();
-  const isAdmin = pathname.startsWith("/admin");
   const user = session?.data?.user;
   const role = user?.role;
 

@@ -37,6 +37,7 @@ import {
 } from "@/entities/s3";
 import { getCategorySignedURL } from "../_actions/get-category-signed-url";
 import { russianToEnglishLayout } from "@/shared/lib/russian-to-english-layout";
+import Image from "next/image";
 
 const createCategoryFormSchema = z.object({
   name: z
@@ -248,7 +249,7 @@ export function CreateCategoryForm({
           {previewUrl && file ? (
             <div className="flex items-center gap-5 mt-4">
               {file.type.startsWith("image/") ? (
-                <img
+                <Image
                   width={200}
                   height={100}
                   src={previewUrl}
