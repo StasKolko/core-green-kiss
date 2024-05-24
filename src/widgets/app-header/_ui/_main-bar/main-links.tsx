@@ -11,14 +11,14 @@ import {
 } from "@/shared/ui/accordion";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 export const MainLinks = ({
   categories,
   onClose,
 }: {
   categories: CategoryTree[];
-  onClose: Function;
+  onClose: MouseEventHandler;
 }) => {
   const [active, setActive] = useState("");
 
@@ -46,7 +46,7 @@ export const MainLinks = ({
               {category.name}
             </AccordionTrigger>
             <AccordionContent>
-              <MainLinks onClose={onClose()} categories={category.children} />
+              <MainLinks onClose={onClose} categories={category.children} />
             </AccordionContent>
           </AccordionItem>
         ) : (
@@ -55,7 +55,7 @@ export const MainLinks = ({
             asChild
             variant="outline"
             key={category.id}
-            onClick={onClose()}
+            onClick={onClose}
           >
             <Link href={category.url || "/"}>
               {category.name}

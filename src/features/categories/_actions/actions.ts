@@ -12,6 +12,7 @@ import {
 import {
   createCategoryElement,
   deleteCategoryElement,
+  getCategoryList,
   updateDescriptionCategoryElement,
   updateNameCategoryElement,
   updateParentIdCategoryElement,
@@ -63,7 +64,25 @@ export const deleteCategoryAction = async (
   command: DeleteCategoryCommand,
   revalidatePagePath: string,
 ) => {
-  await deleteFile(command.image);
-  await deleteCategoryElement(command);
+  const categories = (await getCategoryList()) ?? [];
+  const stack = [command];
+  const result = [];
+
+  while (stack.length > 0) {
+    const item = stack.pop();
+    if (!(item && "id" in item)) continue;
+    for (const category of categories) {
+      if (category.parentId === item.id) {
+        stack.push(category);
+      }
+    }
+    result.push(item);
+  }
+
+  for (const item of result) {
+    await deleteFile(item.image);
+    await deleteCategoryElement(item);
+  }
+
   revalidatePath(revalidatePagePath);
 };

@@ -1,7 +1,5 @@
 "use client";
 
-import { buildCategoryTree } from "@/features/categories/_lib/build-category-tree";
-import { getCategoryList } from "@/features/categories/_repositories/category";
 import { MainLinks } from "./main-links";
 import {
   Sheet,
@@ -26,9 +24,9 @@ export function MainNav({
 }) {
   const [open, setOpen] = useState(false);
 
-  function onClose() {
+  const onClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <nav>
@@ -43,7 +41,7 @@ export function MainNav({
           <SheetHeader className=" border-b pb-5 mb-5">
             <Logo href="/" />
           </SheetHeader>
-          <MainLinks categories={categories} onClose={() => onClose} />
+          <MainLinks categories={categories} onClose={onClose} />
         </SheetContent>
       </Sheet>
     </nav>

@@ -20,7 +20,6 @@ export function UpdateCategoryForm({
   revalidatePagePath: string;
 }) {
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [categoryPath, setCategoryPath] = useState("");
 
   const category = findSelectedCategory(selectedCategory, categories);
 
@@ -69,6 +68,7 @@ export function UpdateCategoryForm({
             categoryDescription={category.description}
           />
           <DeleteCategoryForm
+            categories={categories}
             setSelectedCategory={setSelectedCategory}
             revalidatePagePath={revalidatePagePath}
             categoryId={selectedCategory}

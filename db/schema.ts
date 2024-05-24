@@ -74,22 +74,13 @@ export const verificationTokens = pgTable(
   }),
 );
 
-export const CourseTable = pgTable("course", {
-  id: varchar("id", { length: 40 }).primaryKey().notNull(),
-  name: varchar("name", { length: 255 }).notNull(),
-  description: text("description").notNull(),
-});
-
 export const categories = pgTable("category", {
   id: varchar("id", { length: 40 }).primaryKey().notNull(),
   url: varchar("url", { length: 40 }).notNull(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description").notNull(),
   image: text("image"),
-  parentId: varchar("parent_id", { length: 40 }).references(
-    (): AnyPgColumn => categories.id,
-    { onDelete: "cascade" },
-  ),
+  parentId: varchar("parent_id", { length: 40 }),
   createdBy: varchar("createdBy", { length: 40 }).references(() => users.id),
   createdAt: timestamp("createdAt").defaultNow(),
   updatedBy: varchar("updatedBy", { length: 40 }).references(() => users.id),
@@ -102,6 +93,17 @@ export const products = pgTable("product", {
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description").notNull(),
   image: text("image"),
+});
+
+export const bannerTable = pgTable("banner", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  description: text("description").notNull(),
+  image: text("image"),
+  url: text("url"),
+  createdBy: varchar("created_by", { length: 40 }).references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedBy: varchar("updated_by", { length: 40 }).references(() => users.id),
+  updatedAt: timestamp("updated_at", { mode: "date" }),
 });
 
 export const mediaType = pgEnum("media_type", ["image", "video"]);

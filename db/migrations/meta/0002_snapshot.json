@@ -1,38 +1,10 @@
 {
-  "id": "03e6604d-676b-496b-8bd1-718a65097289",
-  "prevId": "459f22bd-b81f-406b-9b3d-3ef1f28c55c3",
-  "version": "5",
-  "dialect": "pg",
+  "id": "649f734a-fe17-4d1c-98d1-0c39ba54ad56",
+  "prevId": "34ff66db-8b73-456c-bc9b-8f164aa216e4",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "course": {
-      "name": "course",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "varchar(40)",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "account": {
+    "public.account": {
       "name": "account",
       "schema": "",
       "columns": {
@@ -130,7 +102,93 @@
       },
       "uniqueConstraints": {}
     },
-    "category": {
+    "public.banner": {
+      "name": "banner",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(40)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "varchar(40)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "varchar(40)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "banner_created_by_user_id_fk": {
+          "name": "banner_created_by_user_id_fk",
+          "tableFrom": "banner",
+          "tableTo": "user",
+          "columnsFrom": [
+            "created_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "banner_updated_by_user_id_fk": {
+          "name": "banner_updated_by_user_id_fk",
+          "tableFrom": "banner",
+          "tableTo": "user",
+          "columnsFrom": [
+            "updated_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.category": {
       "name": "category",
       "schema": "",
       "columns": {
@@ -138,6 +196,12 @@
           "name": "id",
           "type": "varchar(40)",
           "primaryKey": true,
+          "notNull": true
+        },
+        "url": {
+          "name": "url",
+          "type": "varchar(40)",
+          "primaryKey": false,
           "notNull": true
         },
         "name": {
@@ -174,10 +238,11 @@
           "name": "createdAt",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "default": "now()"
         },
-        "updateBy": {
-          "name": "updateBy",
+        "updatedBy": {
+          "name": "updatedBy",
           "type": "varchar(40)",
           "primaryKey": false,
           "notNull": false
@@ -201,7 +266,7 @@
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
+          "onDelete": "no action",
           "onUpdate": "no action"
         },
         "category_createdBy_user_id_fk": {
@@ -217,12 +282,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "category_updateBy_user_id_fk": {
-          "name": "category_updateBy_user_id_fk",
+        "category_updatedBy_user_id_fk": {
+          "name": "category_updatedBy_user_id_fk",
           "tableFrom": "category",
           "tableTo": "user",
           "columnsFrom": [
-            "updateBy"
+            "updatedBy"
           ],
           "columnsTo": [
             "id"
@@ -234,7 +299,82 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "session": {
+    "public.media": {
+      "name": "media",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(40)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "media_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.product": {
+      "name": "product",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(40)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "url": {
+          "name": "url",
+          "type": "varchar(40)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.session": {
       "name": "session",
       "schema": "",
       "columns": {
@@ -276,7 +416,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user": {
+    "public.user": {
       "name": "user",
       "schema": "",
       "columns": {
@@ -295,6 +435,7 @@
         "role": {
           "name": "role",
           "type": "role",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
           "default": "'USER'"
@@ -331,7 +472,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "verificationToken": {
+    "public.verificationToken": {
       "name": "verificationToken",
       "schema": "",
       "columns": {
@@ -369,13 +510,22 @@
     }
   },
   "enums": {
-    "role": {
+    "public.role": {
       "name": "role",
-      "values": {
-        "ADMIN": "ADMIN",
-        "USER": "USER",
-        "MANAGER": "MANAGER"
-      }
+      "schema": "public",
+      "values": [
+        "ADMIN",
+        "USER",
+        "MANAGER"
+      ]
+    },
+    "public.media_type": {
+      "name": "media_type",
+      "schema": "public",
+      "values": [
+        "image",
+        "video"
+      ]
     }
   },
   "schemas": {},

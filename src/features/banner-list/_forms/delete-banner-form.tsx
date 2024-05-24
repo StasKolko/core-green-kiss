@@ -3,23 +3,18 @@ import { Button } from "@/shared/ui/button";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { cn } from "@/shared/lib/utils";
-import { deleteCategoryAction } from "../../_actions/actions";
-import { CategoryTree } from "../../_domain/types";
+import { deleteBannerAction } from "../_actions/actions";
 
-export function DeleteCategoryForm({
-  categoryId,
+export function DeleteBannerForm({
+  bannerId,
   revalidatePagePath,
   className,
-  setSelectedCategory,
   fileUrl,
-  categories,
 }: {
-  categoryId: string;
+  bannerId: string;
   revalidatePagePath: string;
   className?: string;
-  setSelectedCategory: Function;
   fileUrl: string;
-  categories: CategoryTree[];
 }) {
   const [open, setOpen] = useState(false);
   const [isCreateTransition, startCreateTransition] = useTransition();
@@ -27,12 +22,11 @@ export function DeleteCategoryForm({
 
   const onSubmit = () => {
     startCreateTransition(async () => {
-      await deleteCategoryAction(
-        { id: categoryId, image: fileUrl },
+      await deleteBannerAction(
+        { id: bannerId, image: fileUrl },
         revalidatePagePath,
       );
     });
-    setSelectedCategory("");
   };
 
   return (
@@ -45,12 +39,11 @@ export function DeleteCategoryForm({
           type="button"
           disabled={isCreateTransition}
         >
-          Удалить категорию
+          Удалить баннер
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <p>Вы уверены, что хотите удалить категорию?</p>
-
+        Вы уверены, что хотите удалить баннер?
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className={cn(className, "space-y-4")}

@@ -1,4 +1,3 @@
-import AuthorizedGuardAdmin from "@/features/auth/authorized-guard-admin";
 import { AdminHeader } from "@/widgets/admin-header/admin-header";
 
 export default async function Layout({
@@ -9,7 +8,7 @@ export default async function Layout({
   return (
     <>
       <AdminHeader />
-      <AuthorizedGuardAdmin>{children}</AuthorizedGuardAdmin>
+{children}
     </>
   );
 }

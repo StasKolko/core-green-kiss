@@ -2,7 +2,7 @@ import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shirt, ListTree } from "lucide-react";
+import { Shirt, ListTree, GalleryHorizontal } from "lucide-react";
 
 const adminLinks = [
   {
@@ -14,6 +14,11 @@ const adminLinks = [
     title: "Категории",
     href: "/admin/categories",
     icon: <ListTree className="h-5 w-5" />,
+  },
+  {
+    title: "Баннера",
+    href: "/admin/banners",
+    icon: <GalleryHorizontal className="h-5 w-5" />,
   },
 ];
 
@@ -33,8 +38,8 @@ export function AdminNav({ onClose }: { onClose: Function }) {
           variant="ghost"
         >
           <Link href={link.href}>
-            {link.title}
             {link.icon}
+            {link.title}
           </Link>
         </Button>
       ))}

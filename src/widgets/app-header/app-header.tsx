@@ -9,12 +9,13 @@ export function AppHeader({
   variant: "auth" | "private" | "public";
 }) {
   const isPublic = variant === "public";
+  const test = false;
 
   return (
     <AppHeaderLayout
-      topBar={isPublic && <TopBar />}
+      topBar={test && isPublic && <TopBar />}
       mainBar={<MainBar isPublic={isPublic} />}
-      quickTags={isPublic && <QuickTags />}
+      quickTags={test && isPublic && <QuickTags />}
     />
   );
 }
