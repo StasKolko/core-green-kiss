@@ -80,7 +80,7 @@ export const deleteCategoryAction = async (
   }
 
   for (const item of result) {
-    await deleteFile(item.image);
+    if (item.image !== null) await deleteFile(item.image);
     await deleteCategoryElement(item);
   }
 

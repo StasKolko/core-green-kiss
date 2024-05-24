@@ -23,7 +23,7 @@ export type CreateCategoryCommand = {
 
 export type DeleteCategoryCommand = {
   id: string;
-  image: string;
+  image: string | null;
 };
 
 export interface CategoryTree extends CategoryEntity {
