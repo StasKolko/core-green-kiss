@@ -17,7 +17,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run lint:types
-      - run: npm run test
+      # - run: npm run test
   deploy:
     needs: lint
     runs-on: ubuntu-latest

@@ -87,14 +87,6 @@ export const categories = pgTable("category", {
   updatedAt: timestamp("updatedAt", { mode: "date" }),
 });
 
-export const products = pgTable("product", {
-  id: varchar("id", { length: 40 }).primaryKey().notNull(),
-  url: varchar("url", { length: 40 }).notNull(),
-  name: varchar("name", { length: 255 }).notNull(),
-  description: text("description").notNull(),
-  image: text("image"),
-});
-
 export const bannerTable = pgTable("banner", {
   id: varchar("id", { length: 40 }).primaryKey().notNull(),
   description: text("description").notNull(),
@@ -104,6 +96,27 @@ export const bannerTable = pgTable("banner", {
   createdAt: timestamp("created_at").defaultNow(),
   updatedBy: varchar("updated_by", { length: 40 }).references(() => users.id),
   updatedAt: timestamp("updated_at", { mode: "date" }),
+});
+
+export const productTable = pgTable("product", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  description: text("description").notNull(),
+  image: text("image"),
+  url: text("url"),
+  categoryId: varchar("category_id", { length: 40 }).references(
+    () => categories.id,
+  ),
+});
+
+export const sizeTable = pgTable("size", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  name: varchar("name", { length: 40 }).notNull(),
+});
+
+export const colorTable = pgTable("color", {
+  id: varchar("id", { length: 40 }).primaryKey().notNull(),
+  name: varchar("name", { length: 40 }).notNull(),
+  color: varchar("color", { length: 40 }).notNull(),
 });
 
 export const mediaType = pgEnum("media_type", ["image", "video"]);
